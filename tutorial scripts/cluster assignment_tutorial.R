@@ -105,4 +105,4 @@ myacc %>% ggplot() +
   geom_boxplot(aes(x = K, y = acc, fill = method)) +
   labs(x = "", y = "accuracy") +
   theme_light()
-
+#

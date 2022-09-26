@@ -84,8 +84,8 @@ stopCluster(cl)
 #  
 
 # save the output
-write.csv(myacc, file = "cluster_assgn_acc.csv", row.names = F)
-  
+#write.csv(myacc, file = "cluster_assgn_acc.csv", row.names = F)
+#  
   
   
   
