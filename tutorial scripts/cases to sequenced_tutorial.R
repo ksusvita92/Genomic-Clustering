@@ -110,7 +110,7 @@ myacc %>%
   theme_light() +
   theme(axis.text.x = element_text(angle = 90, vjust = .5, hjust = )) +
   labs(x = "", y = "accuracy")
-
+#
 
 
 
