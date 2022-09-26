@@ -21,3 +21,4 @@ dt %>% ggplot() +
   facet_wrap(~model) +
   labs(x = "", y = "accuracy") +
   theme_light()
+#
