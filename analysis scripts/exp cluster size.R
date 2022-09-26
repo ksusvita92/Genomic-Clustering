@@ -85,7 +85,8 @@ stopCluster(cl)
 #  
 
 # save the output
-write.csv(mysize, file = "exp_cluster_size.csv", row.names = F)
+#write.csv(mysize, file = "exp_cluster_size.csv", row.names = F)
+#
 
 
 
