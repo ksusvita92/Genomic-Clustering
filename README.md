@@ -2,13 +2,13 @@
 *Analysis and tutorial codes for learning cluster assignment using metadata*
 
 
-Welcome to `Genomic-Clustering` project! The project consists of a list of codes which support the analysis of paper:
+Welcome to the `Genomic-Clustering` project! The project consists of a list of codes which support the analysis of paper:
 
 **Epidemiological Cluster Identification using Multiple Data Sources: An Approach Using Logistic Regression**, by
-Kurnia Susvitasari, Paul F. Tupper, Irving Cancino-Muñoz, Mariana G. Lopez, Inaki Comas, Caroline Colijn
+Kurnia Susvitasari, Paul F. Tupper, Irving Cancino-Muñoz, Mariana G. López, Iñaki Comas, Caroline Colijn
 
 
-The repository is center around the application of package **lr2cluster** which is accessible in https://github.com/ksusvita92/lr2cluster. For the help and tutorial of the package, please visit the link.
+The repository is centred around the application of the package **lr2cluster** which is accessible in https://github.com/ksusvita92/lr2cluster. For the help and tutorial of the package, please visit the link.
 
 
 
@@ -21,4 +21,4 @@ This repository consists of:
 
 
 ## Tutorial and asking questions
-- For the general question and bugs report, send to <ksusvita@gmail.com>
+- For general questions and bug reports, please contact <ksusvita@gmail.com>
