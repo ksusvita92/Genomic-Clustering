@@ -5,7 +5,7 @@
 Welcome to `Genomic-Clustering` project! The project consists of a list of codes which support the analysis of paper:
 
 **Epidemiological Cluster Identification using Multiple Data Sources: An Approach Using Logistic Regression**, by
-Kurnia Susvitasari, Paul F. Tupper, Irving Cancino-Munoz, Mariana G. Lopez, Inaki Comas, Caroline Colijn
+Kurnia Susvitasari, Paul F. Tupper, Irving Cancino-Muñoz, Mariana G. Lopez, Inaki Comas, Caroline Colijn
 
 
 The repository is center around the application of package **lr2cluster** which is accessible in https://github.com/ksusvita92/lr2cluster. For the help and tutorial of the package, please visit the link.
