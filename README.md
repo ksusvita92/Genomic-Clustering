@@ -15,7 +15,7 @@ The repository is centred around the application of the package **lr2cluster** w
 ## Content
 This repository consists of:
 
-+ analysis scripts: list of codes for performing analysis in the paper.
++ analysis scripts: list of codes for performing the analysis in the paper.
 + tutorial scripts: codes similar to ``analysis scripts'' but allows users to change and mimic the analysis in the paper.
 + results: analysis results.
 
