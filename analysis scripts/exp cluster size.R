@@ -22,13 +22,18 @@ library(tcltk)
 ## ****** Configurations *********
 ## *******************************
 method <- c("plr", "mlr")
-cl_col_nm <- "tr_cl"
+cl_col_nm <- "Cluster"
 
-dt <- tb_valencia %>% filter(tr_cl != "unique")
-ut <- tb_valencia %>% anti_join(dt)
-load("./analysis scripts/id.RData")
+# load data
+source("./analysis scripts/tb_valencia.R")
+ut <- dt
+dt <- ut %>% filter(Cluster != "unique")
 
-mod <- tr_cl ~ latitude+longitude+foreign
+# permutation to split data
+set.seed(123)
+id <- caret::createDataPartition(dt$Cluster, 1000, .6)
+
+mod <- Cluster ~ Latitude+Longitude+Foreign
 tr_sz <- as.data.frame(table(dt %>% pull(cl_col_nm)))
 names(tr_sz) <- c("cluster", "tr_size")
 
@@ -69,7 +74,7 @@ progress <- function(n){
 cl <- makeCluster(parallel::detectCores(), type="SOCK")
 registerDoSNOW(cl)
 
-mysize <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster", "dplyr"), .options.snow = list(progress=progress)) %dopar% {
+mysize <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster", "dplyr"), .options.snow = list(progress=progress), .errorhandling = "pass") %dopar% {
   traindt <- dt[id[[i]],]
   testdt <- dt[-id[[i]],]
   n0 <- as.data.frame(table(traindt %>% pull(cl_col_nm)))
@@ -85,7 +90,7 @@ stopCluster(cl)
 #  
 
 # save the output
-#write.csv(mysize, file = "exp_cluster_size.csv", row.names = F)
+#write.csv(mysize, file = "./results/exp_cluster_size.csv", row.names = F)
 #
 
 
