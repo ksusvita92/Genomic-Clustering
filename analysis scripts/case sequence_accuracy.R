@@ -24,12 +24,17 @@ library(tcltk)
 K <- 5 
 method <- c("plr", "mlr") 
 
-dt <- tb_valencia %>% filter(tr_cl != "unique") 
-load("./analysis scripts/id.RData") 
+# load data
+source("./analysis scripts/tb_valencia.R")
+dt <- dt %>% filter(Cluster != "unique")
 
-mod <- tr_cl ~ latitude+longitude+foreign
-cl_col_nm <- "tr_cl"
-cs_col_nm <- "id_server"
+# permutation to split data
+set.seed(123)
+id <- caret::createDataPartition(dt$Cluster, 1000, .6)
+
+mod <- Cluster ~ Latitude+Longitude+Foreign
+cl_col_nm <- "Cluster"
+cs_col_nm <- "ID"
 
 
 
@@ -71,11 +76,11 @@ progress <- function(n){
 cl <- makeCluster(parallel::detectCores(), type="SOCK")
 registerDoSNOW(cl)
 
-myacc <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster", "dplyr"), .options.snow = list(progress=progress)) %dopar% {
+myacc <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster", "dplyr"), .options.snow = list(progress=progress), .errorhandling = "pass") %dopar% {
   traindt <- dt[id[[i]],]
   testdt <- dt[-id[[i]],]
   
-  getallseq(mod1, K, method, traindt, testdt)
+  getallseq(mod, K, method, traindt, testdt)
 }
 
 close(pb)
@@ -83,7 +88,7 @@ stopCluster(cl)
 #  
 
 # save the output
-#write.csv(myacc, file = "case_seq_acc.csv", row.names = F)
+write.csv(myacc, file = "./results/case_seq_acc.csv", row.names = F)
 #
 
 
