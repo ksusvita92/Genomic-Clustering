@@ -13,21 +13,22 @@ library(dplyr)
 
 ## ***** Load TB Valencia data *****
 ## *********************************
-dt <- tb_valencia
-clus_dt <- dt %>% filter(tr_cl != "unique") #filtered out unclustered cases
+source("./analysis scripts/tb_valencia.R")
+clus_dt <- dt %>% filter(Cluster != "unique")
 #
 
 
 
 ## ***** Split the data into training vs testing sets *****
 ## ********************************************************
-load("./analysis scripts/id.RData") #load permutation data
-id <- id[[836]] #pick one
+set.seed(123)
+id <- caret::createDataPartition(clus_dt$Cluster, 1, .6, F)
+
 traindt <- clus_dt[id,]
 testdt <- clus_dt[-id,]
 
-mod1 <- tr_cl ~ latitude+longitude+sex+diabetes+hiv+foreign
-mod2 <- tr_cl ~ latitude+longitude+foreign
+mod1 <- Cluster ~ Latitude+Longitude+Gender+Diabetes+HIV+Foreign
+mod2 <- Cluster ~ Latitude+Longitude+Foreign
 fit1 <- plr(mod1, clus_dt) 
 fit2 <- plr(mod2, clus_dt)
 summary(fit1); summary(fit2) #this is the results in Table 3
@@ -38,10 +39,10 @@ summary(fit1); summary(fit2) #this is the results in Table 3
 ## **** Get optimum threshold *******
 ## **********************************
 fit3 <- plr(mod2, traindt) 
-pred <- predict(fit3, testdt, case.id = testdt$id_server)
-true_y <- zCovariate(testdt$tr_cl, id = testdt$id_server)
+pred <- predict(fit3, testdt, case.id = testdt$ID)
+true_y <- zCovariate(testdt$Cluster, id = testdt$ID)
 
-pi0 <- optThreshold(true_y$y, pred$y, cost.ratio = 12)
+pi0 <- optThreshold(true_y$y, pred$y, cost.ratio = 50)
 plot(pi0)
 #
 
