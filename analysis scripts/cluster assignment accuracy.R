@@ -22,14 +22,20 @@ library(tcltk)
 ## ****** Configurations *********
 ## *******************************
 K <- c(1,3,5) #no. of best clusters to predict
-method <- c("plr", "mlr", "random")
+method <- c("plr", "mlr", "random") 
 
-dt <- tb_valencia %>% filter(tr_cl != "unique")
-load("./analysis scripts/id.RData")
+# load data
+source("./analysis scripts/tb_valencia.R")
+dt <- dt %>% filter(Cluster != "unique")
 
-mod1 <- tr_cl ~ latitude+longitude+sex+diabetes+hiv+foreign
-mod2 <- tr_cl ~ latitude+longitude+foreign
-cl_col_nm <- "tr_cl"
+# permutation to split data
+set.seed(123)
+id <- caret::createDataPartition(dt$Cluster, 1000, .6)
+
+
+mod1 <- Cluster ~ Latitude+Longitude+Gender+Diabetes+HIV+Foreign
+mod2 <- Cluster ~ Latitude+Longitude+Foreign
+cl_col_nm <- "Cluster"
 
 
 
@@ -70,7 +76,7 @@ progress <- function(n){
 cl <- makeCluster(parallel::detectCores(), type="SOCK")
 registerDoSNOW(cl)
 
-myacc <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster", "dplyr"), .options.snow = list(progress=progress)) %dopar% {
+myacc <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster", "dplyr"), .options.snow = list(progress=progress), .errorhandling = "pass") %dopar% {
   traindt <- dt[id[[i]],]
   testdt <- dt[-id[[i]],]
   
@@ -84,7 +90,7 @@ stopCluster(cl)
 #  
 
 # save the output
-#write.csv(myacc, file = "cluster_assgn_acc.csv", row.names = F)
+#write.csv(myacc, file = "./results/cluster_assgn_acc.csv", row.names = F)
 #  
   
   
