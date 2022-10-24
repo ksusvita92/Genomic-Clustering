@@ -5,7 +5,8 @@
 #   necessary columns, and reproduce Figure 1.
 #
 # Note:
-#   We alter and jitter the location data to protect patients' privacy. The resulting 
+#   We alter and jitter the location data, but maintain the spatial distance
+#   to protect patients' privacy. The resulting 
 #   analysis may be slightly different compared to the paper.
 #
 # Requirement:
