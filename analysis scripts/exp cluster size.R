@@ -28,6 +28,7 @@ cl_col_nm <- "Cluster"
 source("./analysis scripts/tb_valencia.R")
 ut <- dt
 dt <- ut %>% filter(Cluster != "unique")
+ut <- ut %>% filter(Cluster == "unique")
 
 # permutation to split data
 set.seed(123)
@@ -78,7 +79,7 @@ mysize <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster"
   traindt <- dt[id[[i]],]
   testdt <- dt[-id[[i]],]
   n0 <- as.data.frame(table(traindt %>% pull(cl_col_nm)))
-  r <- nrow(testdt)/(nrow(testdt)+nrow(ut))
+  r <- nrow(ut)/(nrow(testdt)+nrow(ut))
   
   tmp1 <- getallsize(mod, 0, method, traindt, testdt) %>% mutate(rho = 0)
   tmp2 <- getallsize(mod, r, method, traindt, testdt) %>% mutate(rho = r)
