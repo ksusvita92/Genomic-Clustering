@@ -36,13 +36,4 @@ summary(fit1); summary(fit2) #this is the results in Table 3
 
 
 
-## **** Get optimum threshold *******
-## **********************************
-fit3 <- plr(mod2, traindt) 
-pred <- predict(fit3, testdt, case.id = testdt$ID)
-true_y <- zCovariate(testdt$Cluster, id = testdt$ID)
-
-pi0 <- optThreshold(true_y$y, pred$y, cost.ratio = 50)
-plot(pi0)
-#
 
