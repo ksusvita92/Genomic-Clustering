@@ -27,12 +27,12 @@ rawdt <- read_excel(destfile, range = "A3:AB778", na = "NA")
 loc <- read.csv("./analysis scripts/location_data.csv")
 
 # subset the necessary column and cases
-dt <- rawdt %>% transmute(ID = ...1, Cluster = `Genomic
+rawdt <- rawdt %>% transmute(ID = ...1, Cluster = `Genomic
 Cluster ID`, Gender = Gender, Foreign = ifelse(`Country of birth`=="SPAIN", "No", "YES"), Diabetes = Diabetes, HIV = `HIV infected`) %>%
   filter(!is.na(Gender), !is.na(Foreign), !is.na(Diabetes), !is.na(HIV)) %>%
   inner_join(loc, by = c("ID"))
 
-nm <- as.data.frame(table(dt$Cluster)) %>% filter(Freq > 2) %>% pull(Var1)
-dt <- dt %>% filter(Cluster %in% nm)
+nm <- as.data.frame(table(rawdt$Cluster)) %>% filter(Freq > 2) %>% pull(Var1)
+dt <- rawdt %>% filter(Cluster %in% nm)
 
-rm(loc, destfile, url, rawdt)
+rm(loc, destfile, url, nm)
