@@ -16,7 +16,7 @@ The repository is centred around the application of the package **lr2cluster** w
 This repository consists of:
 
 + analysis scripts: codes for performing the analysis in the paper.
-+ results: results of the analysis.
++ results: ".csv" files of the analysis results.
 + location_data.csv (in "analysis scripts" folder) contains geolocation of the TB cases in Valencia, however, the data is altered and jittered.
 
 
