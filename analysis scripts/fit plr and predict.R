@@ -31,6 +31,7 @@ mod1 <- Cluster ~ Latitude+Longitude+Gender+Diabetes+HIV+Foreign
 mod2 <- Cluster ~ Latitude+Longitude+Foreign
 fit1 <- plr(mod1, clus_dt) 
 fit2 <- plr(mod2, clus_dt)
+
 summary(fit1); summary(fit2) #this is the results in Table 3
 #
 
