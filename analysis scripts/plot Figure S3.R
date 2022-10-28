@@ -32,5 +32,6 @@ ptraindt$Spanish_born <- ifelse(ptraindt$Foreign == "No", 1, 0)
 ptraindt$Foreign_born <- ifelse(ptraindt$Foreign == "YES", 1, 0)
 ptraindt$Spanish_foreign <- ifelse(ptraindt$Foreign == "DIFF", 1, 0)
 
+
 M <- cor(ptraindt[,c(4, 6:8)])
 corrplot::corrplot(M, type = "upper", addCoef.col = "gray", tl.col = "black", tl.srt = 45)
