@@ -89,6 +89,7 @@ close(pb)
 stopCluster(cl)
 #  
 
+
 # save the output
 #write.csv(myacc, file = "./results/cluster_assgn_acc.csv", row.names = F)
 #  
