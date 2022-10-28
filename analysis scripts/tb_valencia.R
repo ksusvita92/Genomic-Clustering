@@ -2,7 +2,7 @@
 # 
 # Description:
 #   This script is to download the raw data from Munoz et. al's paper and subset some 
-#   necessary columns, and reproduce Figure 1.
+#   necessary columns.
 #
 # Note:
 #   We alter and jitter the location data, but maintain the spatial distance
