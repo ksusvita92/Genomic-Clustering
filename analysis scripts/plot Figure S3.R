@@ -1,7 +1,7 @@
-# Title: Figure S2
+# Title: Figure S3
 # 
 # Description:
-#   Reproduce Figure S2
+#   Reproduce Figure S3
 #
 # Requirement:
 #   Packages: dplyr, ggplot, patchwork, lr2cluster
