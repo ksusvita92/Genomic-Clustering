@@ -88,7 +88,7 @@ stopCluster(cl)
 #  
 
 # save the output
-write.csv(myacc, file = "./results/case_seq_acc.csv", row.names = F)
+#write.csv(myacc, file = "./results/case_seq_acc.csv", row.names = F)
 #
 
 
