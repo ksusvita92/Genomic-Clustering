@@ -82,7 +82,7 @@ mysize <- foreach(i = 1:length(id), .combine = rbind, .packages = c("lr2cluster"
   r <- nrow(ut)/(nrow(testdt)+nrow(ut))
   
   tmp1 <- getallsize(mod, 0, method, traindt, testdt) %>% mutate(rho = 0)
-  tmp2 <- getallsize(mod, r, method, traindt, testdt) %>% mutate(rho = r)
+  tmp2 <- getallsize(mod, r, method, traindt, bind_rows(testdt, ut)) %>% mutate(rho = r)
   bind_rows(tmp1, tmp2) %>% left_join(tr_sz, by = "cluster") %>% left_join(n0, by = c("cluster"="Var1")) %>% mutate(size = Freq+increment)
 }
 
