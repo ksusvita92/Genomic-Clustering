@@ -17,7 +17,7 @@ This repository consists of:
 
 + analysis scripts: codes for performing the analysis in the paper.
 + results: results of the analysis.
-+ location_data.csv (in ``analysis scripts'' folder) contains geolocation of the TB cases in Valencia, however, the data is altered and jittered.
++ location_data.csv (in "analysis scripts" folder) contains geolocation of the TB cases in Valencia, however, the data is altered and jittered.
 
 
 ## Questions and Bug Reports
